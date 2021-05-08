@@ -8,10 +8,12 @@ object KtDataBase{
 
     private val LOG: Logger = Logger.getLogger(CommentDataBase::class.java.name)
 
-    fun dbExecute(connection: Connection, sql:String, args: List<Any>):Boolean{
+    fun dbExecute(connection: Connection, sql:String, args: List<Any>? = null):Boolean{
         val ps = connection.prepareStatement(sql)
-        for (i in args.indices){
-            ps.setObject(i + 1, args[i])
+        if (args != null) {
+            for (i in args.indices){
+                ps.setObject(i + 1, args[i])
+            }
         }
         return try {
             ps.executeUpdate()
