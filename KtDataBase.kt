@@ -8,6 +8,7 @@ object KtDataBase{
 
     private val LOG: Logger = Logger.getLogger(KtDataBase::class.java.name)
 
+    @Synchronized
     fun dbExecute(connection: Connection, sql:String, args: List<Any>? = null):Boolean{
         val ps = connection.prepareStatement(sql)
         if (args != null) {
@@ -24,6 +25,7 @@ object KtDataBase{
         }
     }
 
+    @Synchronized
     fun dbExecuteQuery(connection: Connection, sql:String, args: List<Any>? = null): List<MutableMap<String, Any>>?{
         val lst = mutableListOf<MutableMap<String, Any>>()
         return try {
