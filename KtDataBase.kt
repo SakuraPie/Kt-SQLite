@@ -6,7 +6,7 @@ import java.util.logging.Logger
 
 object KtDataBase{
 
-    private val LOG: Logger = Logger.getLogger(CommentDataBase::class.java.name)
+    private val LOG: Logger = Logger.getLogger(KtDataBase::class.java.name)
 
     fun dbExecute(connection: Connection, sql:String, args: List<Any>? = null):Boolean{
         val ps = connection.prepareStatement(sql)
